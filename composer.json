@@ -1,0 +1,19 @@
+{
+    "name": "root/test",
+    "authors": [
+        {
+            "name": "TBoileau",
+            "email": "t-boileau@email.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "src/",
+            "Framework\\": "app/"
+        }
+    },
+    "require": {
+        "symfony/routing": "^3.2",
+        "symfony/http-foundation": "^3.2"
+    }
+}
