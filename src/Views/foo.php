@@ -1,1 +1,1 @@
-<?php echo json_decode($bar);
+<h3>petit ajout pour voir si ça marche</h3>

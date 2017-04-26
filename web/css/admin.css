@@ -1,0 +1,146 @@
+header {
+    background-color: #2bb180;
+    padding:20px;
+}
+
+.link_basic{
+    color:white;
+    margin-top:8px;
+}
+
+.link_basic:hover {
+    color:#b6d94d;
+    text-decoration: none;
+}
+
+#right_item {
+    text-align: right;
+}
+
+.upper_link {
+    font-size:18px;
+    color:#b6d94d;
+    text-transform: uppercase;
+
+}
+
+.upper_link:hover {
+    font-size:18px;
+    color: #b6d94d;
+    text-decoration: none;
+}
+
+footer {
+    margin-top:10px;
+    padding:15px;
+    background-color:#addccb;
+}
+
+footer p {
+    font-family: 'Roboto', sans-serif;
+    margin-top:8px;
+    color:white;
+    text-align: center;
+}
+
+#left_side {
+    border-top: 1px solid #cacaca;
+    background-color:#3a4252;
+}
+
+#left_side h3 {
+    color:white;
+    text-align: center;
+    font-weight: normal;
+}
+
+#right_side {
+    padding: 0 0 0 90px;
+}
+
+.link {
+    color:white;
+    font-size:18px;
+    padding: 0 15px 0 15px;
+    text-transform: uppercase;
+}
+
+.link:hover {
+     color:white;
+     text-decoration: none;
+     background-color: #b6d94d;
+     padding: 22px 15px 22px 15px;
+ }
+
+a.link.active {
+    color:white;
+    text-decoration: none;
+    background-color: #b6d94d;
+    padding: 22px 15px 22px 15px;
+}
+
+.right {
+    margin-right:20px;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.table {
+margin-top: 30px;
+}
+
+thead td {
+    background-color:#332e3c;
+    color:white;
+    font-size:17px;
+}
+
+td {
+    text-align: center;
+}
+
+tbody td {
+    font-size:19px;
+    padding-top:15px !important;
+    padding-bottom:15px !important;
+}
+
+tbody tr:hover {
+    background-color: #f8f8f8;
+
+}
+
+.id {
+    background-color: #332e3c;
+    color: white;
+    padding-top: 15px !important;
+}
+
+td.id {
+    border:none !important;
+    margin-top:4px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #2bb180;
+    border:none;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #b6d94d;
+    border:none;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #2bb180;
+}

@@ -3,7 +3,8 @@
 namespace Framework;
 
 use Symfony\Component\HttpFoundation\Request;
-
+use Twig_Environment;
+use Twig_Loader_Filesystem;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing;
@@ -13,6 +14,7 @@ use Framework\Config\Routes;
 class App
 {
     static public function run() {
+
         $request = Request::createFromGlobals();
 
         $context = new Routing\RequestContext();
@@ -27,5 +29,6 @@ class App
         $controller = new $controllerClass();
 
         $controller->{$actionMethod}();
+
     }
 }

@@ -1,0 +1,423 @@
+body {
+    background-color:#f8f8f8;
+}
+
+/** -------------------------
+Css du contenu en tête item
+ -------------------------- */
+
+#header {
+   
+    background-image: url('../images/background.jpg');
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+#left_item {
+    margin-top: 10px;
+}
+
+#left_item a {
+    color:white;
+}
+
+#left_item a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#right_item {
+    margin-top:20px;
+    text-align: right;
+}
+
+#right_item a {
+    text-transform: uppercase;
+    color: white;
+    margin:15px 25px 15px 25px;
+    padding-bottom:15px;
+}
+
+#right_item a:hover {
+    color:#fce38a;
+    text-decoration: none;
+    border-bottom: 3px solid #fce38a;
+}
+
+#right_item ul li{
+    list-style: none;
+    display: inline-block;
+}
+
+/** ------------------------------
+Css du contenu en tête gros titre
+ ------------------------------ */
+
+#last_episode {
+    margin-top:90px;
+}
+
+#last_episode h5 {
+    font-size:60px;
+    color:white;
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+
+}
+
+#last_episode h4 {
+    font-size:90px;
+    color:white;
+    text-align: center;
+    font-weight: bold;
+    font-family:'Montserrat', sans-serif;
+
+}
+
+#buttonMore {
+    margin-top:80px;
+    margin-bottom:90px;
+    text-align: center;
+}
+
+.btnMore {
+    color:white;
+    font-family: 'Montserrat', sans-serif;
+    font-size:20px;
+    padding:15px 25px 15px 25px;
+    border:2px solid white;
+
+}
+
+.btnMore:hover{
+    color:#fce38a;
+    text-decoration: none;
+    border: 2px solid #fce38a;
+}
+
+/** ------------------------------
+Css du contenu home page
+ ------------------------------ */
+
+#center_title {
+    background-color:#429fa9;
+    padding:15px;
+    text-align: center;
+}
+
+#center_title h3 {
+    color:white;
+    font-family: 'Montserrat', sans-serif;
+    font-size:35px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#article_side {
+    padding:15px;
+}
+
+#article_side h2 > a {
+    color:black;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#article_side p {
+    color:#999999;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sep {
+    border-bottom:2px solid #e5e5e5;
+}
+
+.smallBtnMore {
+    font-family: 'Montserrat', sans-serif;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.smallBtnMore a {
+    padding: 10px;
+    background-color: #f5f6fa;
+    border: 1px solid #dadada;
+    color: black;
+}
+
+.smallBtnMore a:hover {
+    background-color: #5587a2;
+    color: white;
+    text-decoration: none;
+}
+
+.smallcaps {
+    text-transform: lowercase;
+}
+
+/** ------------------------------
+Css du contenu show page
+ ------------------------------ */
+
+
+#Article h2 {
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+
+}
+
+#box_episode em {
+    padding:10px;
+    background-color: #95e1d3;
+    color:white;
+}
+
+.dateAjout {
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+
+.header {
+    text-align: center;
+    background-image: url(../images/background-com.jpg);
+    padding-bottom: 20px;
+    font-size: 25px;
+    text-transform: uppercase;
+
+}
+
+.LastEpTitle {
+    color: #f38181;
+    margin-bottom: -1px;
+    padding: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header i {
+    margin-bottom:20px;
+}
+
+.RecentCom {
+    color: #f38181;
+    margin-bottom: -1px;
+    padding: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#box_episode h2 {
+    color: #696969;
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+}
+
+.borderRight {
+    border-rigth:1px solid white;
+}
+
+
+#box_episode {
+    display: block;
+    background-color: white;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    border: 1px solid #dadada;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+#box_episode p {
+    font-family: 'Roboto', sans-serif;
+    color:#999999;
+}
+
+.sousBox {
+    margin-top:10px;
+    padding-top:15px;
+    font-size: 15px;
+    border-top:1px solid #cacaca;
+}
+
+.sousBox i.fa{
+    color: #95e1d3 !important;
+}
+
+#Article h1 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.rightMarg {
+    margin-left: 10px;
+}
+
+#Article p {
+    color:#999999;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 180%;
+    font-size:17px;
+    text-align: justify;
+}
+
+#Article
+{
+    text-align: center;
+    margin-bottom:40px;
+}
+
+#zonCom {
+    text-align: center;
+    background-image: url('../images/background-com.jpg');
+    color:#f38181;
+    padding-bottom:20px;
+}
+
+#zonCom h1
+{
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/** ------------------------------
+Formulaire de connexion
+ ------------------------------ */
+
+
+#form_connect {
+
+    padding:40px 200px 0 200px
+}
+
+.formLogin {
+    padding:20px;
+    background-color:#ececec;
+    border: 1px solid #cacaca;
+}
+
+.btn {
+    border-radius: 0px !important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+
+/** ------------------------------
+Footer
+ ------------------------------ */
+footer {
+    text-align: center;
+    border-top: 2px solid #e5e5e5;
+    padding: 10px;
+}
+
+footer p {
+    padding-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.goodwin {
+    color:#f38181;
+}
+
+/** ------------------------------
+
+ZonCOm
+ ------------------------------ */
+
+section#Com {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+h4.pseudo {
+    margin-left:20px;
+    padding:10px;
+    display: inline;
+    background-color: #95e1d3;
+    color:white;
+}
+
+h3.pseudo {
+    margin-left:25px;
+    margin-top:20px;
+    font-size:18px;
+}
+
+.boxCom {
+    margin-bottom:50px;
+}
+
+.lastcom {
+
+    background-color:#fff;
+    border: 1px solid #e5e5e5;
+}
+.commentaire {
+    padding:15px;
+    margin-left:10px;
+    margin-top: 10px;
+}
+
+.dateCom {
+
+    color:#696969;
+    font-style: italic;
+    margin-left:20px;
+    padding-top:20px;
+
+}
+
+.boxCom button {
+    color: #333;
+    margin-top:-1px;
+    background-color: #fff;
+    border-color: #e5e5e5;
+    float:right;
+}
+
+.boxCom button:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+.form-control {
+    border-radius:0px;
+}
+
+#formCom {
+    margin-top:20px;
+    padding:5px 15px 15px 15px;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+}
+
+#formCom h3 {
+    text-align: center;
+    color:#f38181;
+    font-family: 'Montserrat', sans-serif;
+}
+
+label {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h5.pseudo {
+    font-size:20px;
+    font-family: 'Montserrat', sans-serif;
+    margin-left:25px;
+}
+
+p.dateZonCom {
+    margin-top:20px;
+    margin-left:25px;
+    font-style: italic;
+}
