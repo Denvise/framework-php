@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat|Roboto" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('web/css/main.css') }}" rel="stylesheet">
+    <link href="web/css/estilo.css" rel="stylesheet">
 
 
     <title>Jean Forteroche | Accueil</title>
@@ -40,9 +40,11 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container">
 
-    <?= $content; ?>
+    {% block content %}
+
+    {% endblock %}
 
 </div><!-- /.container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -60,4 +62,3 @@
 </footer>
 </body>
 </html>
-est de twig infame</h4>

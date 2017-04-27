@@ -12,6 +12,7 @@ class Routes
         $routes = new RouteCollection();
         $routes->add('foo', new Route('/foo', array('_controller' => 'FooController::fooAction')));
         $routes->add('home', new Route('/', array('_controller' => 'FooController::fooAction')));
+        $routes->add('aticle', new Route('/article', array('_controller' => 'ArticlesController::articleAction')));
         return $routes;
     }
 }
