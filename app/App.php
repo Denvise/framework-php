@@ -30,13 +30,5 @@ class App
 
         $controller->{$actionMethod}();
 
-        $loader = new Twig_Loader_Filesystem(__DIR__.'/../src/Views/templates');
-        $twig = new Twig_Environment($loader, [
-            'cache' => false
-        ]);
-        echo $twig->render('default.twig', array(
-            'moteur_name' => 'Twig'
-        ));
-
     }
 }

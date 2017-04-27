@@ -6,14 +6,22 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Controller
 {
+    private $twig;
+
+    public function __construct()
+    {
+        $loader = new \Twig_Loader_Filesystem(__DIR__.'/../src/Views/');
+        $this->twig = new \Twig_Environment($loader, [
+            'cache' => false
+        ]);
+
+    }
+
+
     protected function render($filename,$data)
     {
-        ob_start();
-        extract($data);
-        include $filename;
-        $content = ob_get_clean();
 
-        $response = new Response($content);
+        $response = new Response($this->twig->render($filename, $data));
         $response->send();
     }
 

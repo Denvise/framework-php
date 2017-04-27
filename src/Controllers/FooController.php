@@ -9,6 +9,6 @@ class FooController extends Controller
 {
     public function fooAction()
     {
-        return $this->render(__DIR__."/../Views/foo.php",[]);
+        return $this->render('foo.html.twig',['moteur' => 'Twig']);
     }
 }
