@@ -15,10 +15,7 @@
     "require": {
         "symfony/routing": "^3.2",
         "symfony/http-foundation": "^3.2",
-        "twig/twig": "~1.0"
-    },
-
-    "require": {
-        "doctrine/orm": "*"
+        "twig/twig": "~1.0",
+        "doctrine/orm": "^2.5"
     }
 }
