@@ -10,9 +10,10 @@ class Routes
     static public function getRoutes()
     {
         $routes = new RouteCollection();
-        $routes->add('foo', new Route('/foo', array('_controller' => 'FooController::fooAction')));
-        $routes->add('home', new Route('/', array('_controller' => 'FooController::fooAction')));
-        $routes->add('aticle', new Route('/article', array('_controller' => 'ArticlesController::articleAction')));
+        $routes->add('home', new Route('/', array('_controller' => 'HomeController::homeAction')));
+        $routes->add('contact', new Route('/contact', array('_controller' => 'ContactController::contactAction')));
+        $routes->add('about', new Route('/about', array('_controller' => 'AboutController::aboutAction')));
+        $routes->add('episode', new Route('/episode/{page}', array('_controller' => 'PostController::showAction')));
         return $routes;
     }
 }

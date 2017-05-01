@@ -1,0 +1,43 @@
+{% extends 'templates/default.html.twig' %}
+
+{% block content %}
+    <section class="clearfix row">
+        <div class="header row">
+            <h2 class="LastEpTitle"><i class="fa fa-envelope" aria-hidden="true"></i><br/>
+                Me contacter</h2>
+            <img src="images/spera.png">
+        </div>
+        <div id="Contact" class="container col-md-6">
+            <p class="contact">
+            Vous avez une question concernant le blog ? Vous voudriez avoir plus
+            d'informations me concernant ou simplement pour dire bonjour ? Remplissez le formulaire
+            ci-dessous je vous répondrais dans les meilleurs délais.
+                <form id="contact-form" >
+                    <div class="form-group">
+                        <label>Votre Nom :</label>
+                        <input type="text" class="form-control" id="name" placeholder="Jean">
+                    </div>
+                    <div class="form-group">
+                        <label>Votre mail :</label>
+                        <input type="email" class="form-control" id="email" placeholder="jean@contact.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Votre message :</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+        <button type="submit" class="btn btn-salm">Envoyer</button>
+        </form>
+            </p>
+        </div>
+        <div id="PictureSide" class="container col-md-offset-1 col-md-4">
+        <img class="picture" src="images/jeanforteroche.jpg"/>
+            <h3>Jean Forteroche</h3>
+            <p class="description">
+                <span class="prestige">Auteur | Acteur | Ecrivain</span> <br/>
+                Personnage aux multiples facettes, Jean à su conquérir un large public
+                Son style d’écriture mêle différents genres, notamment la saga d’aventure,
+                mais aussi les contes philosophique.
+            </p>
+        </div>
+    </section>
+{% endblock %}

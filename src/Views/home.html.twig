@@ -1,0 +1,42 @@
+{% extends 'templates/default.html.twig' %}
+{% block content %}
+    <section class="clearfix row">
+        <div id="LeftCol" class="col-md-7">
+            <div id="headerLeft">
+                <h2 class="LastEpTitle"><i class="fa fa-pencil" aria-hidden="true"></i><br/>
+                            Les derniers épisodes</h2>
+                <img src="images/spera.png">
+            </div>
+            <div id="ColumnLeft">
+
+                {% for articles in articles %}
+                    <div id="box_episode">
+
+                        <h2>.: {{articles.id}} :. {{articles.titre}}</h2>
+                        <em class="sousNote"><i class="fa fa-calendar dateAjout" aria-hidden="true"></i> {{articles.dateAjout}}</em>
+                        <p>{{  articles.getExtrait()|raw }} </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="RightCol" class="col-md-5">
+            <div id="headerRight">
+                <h2 class="LastEpTitle"><i class="fa fa-commenting" aria-hidden="true"></i><br/>
+                    Commentaires récents</h2>
+                <img src="images/spera.png">
+            </div>
+            <div id="ColumnRight">
+
+                {% for commentaire in commentaire %}
+                    <div id="box_episode">
+                        {{ commentaire.getComment()|raw }}
+                    </div>
+
+                {% endfor %}
+
+                <div class="footer-com"></div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

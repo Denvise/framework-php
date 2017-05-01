@@ -1,21 +1,24 @@
 {
-    "name": "root/test",
+    "name": "denvise/framework-php",
     "authors": [
         {
-            "name": "TBoileau",
-            "email": "t-boileau@email.com"
+            "name": "Denvise",
+            "email": "jardisindustrie@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "": "src/",
+            "Controller\\": "src/controllers/",
+            "Entity\\": "src/entities/",
             "Framework\\": "app/"
         }
     },
     "require": {
         "symfony/routing": "^3.2",
         "symfony/http-foundation": "^3.2",
-        "twig/twig": "~1.0",
-        "doctrine/orm": "^2.5"
+        "twig/twig": "~2.0",
+        "doctrine/orm": "^2.5.5",
+        "symfony/yaml": "^3.2",
+        "symfony/config": "^3.2"
     }
 }

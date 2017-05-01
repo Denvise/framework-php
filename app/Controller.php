@@ -22,11 +22,13 @@ class Controller
             'driver'   => 'pdo_mysql',
             'user'     => 'root',
             'password' => 'root',
-            'dbname'   => 'product',
+            'dbname'   => 'blog',
         );
 
         $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src/Entities"), false);
         $this->doctrine = EntityManager::create($dbParams, $config);
+
+        $entityManager = $this->getDoctrine();
 
     }
 

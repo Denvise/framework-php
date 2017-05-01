@@ -1,5 +1,9 @@
 <?php
 namespace Entities;
+/**
+* @Table(name="produits")
+* @Entity
+ **/
 class Product
 {
     /**
