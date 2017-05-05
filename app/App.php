@@ -23,12 +23,14 @@ class App
 
         $route = $matcher->match($request->getPathInfo());
 
+
         list($controllerClass,$actionMethod) = explode("::",$route["_controller"]);
         $controllerClass = "\Controllers\\".$controllerClass;
 
         $controller = new $controllerClass();
-
-        $controller->{$actionMethod}();
+        $parameters = $route;
+        unset($parameters['_controller'], $parameters['_route']);
+        call_user_func_array(array($controller, $actionMethod), $parameters);
 
     }
 }

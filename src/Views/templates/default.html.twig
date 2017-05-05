@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat|Roboto" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/estilo.css" rel="stylesheet">
+    <link href="/css/estilo.css" rel="stylesheet">
 
 
     <title>Jean Forteroche | Accueil</title>
@@ -33,7 +33,7 @@
     </div>
     <div id="last_episode" class="container">
         <h5>billet simple pour l'Alaska</h5>
-        <h4>- Episode 1 - <br/> Marry me !</h4>
+        <h4>- Episode {{ lastArticle.id }} - <br/>{{ lastArticle.titre }}</h4>
     </div>
     <div id="buttonMore" class="container">
         <a href="index.php?p=posts.show&id=" class="btnMore" role="button">Voir l'épisode</a>

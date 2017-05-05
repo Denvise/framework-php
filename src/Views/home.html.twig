@@ -9,12 +9,12 @@
             </div>
             <div id="ColumnLeft">
 
-                {% for articles in articles %}
+                {% for article in articles %}
                     <div id="box_episode">
 
-                        <h2>.: {{articles.id}} :. {{articles.titre}}</h2>
-                        <em class="sousNote"><i class="fa fa-calendar dateAjout" aria-hidden="true"></i> {{articles.dateAjout}}</em>
-                        <p>{{  articles.getExtrait()|raw }} </p>
+                        <h2>.: {{article.id}} :. {{article.titre}}</h2>
+                        <em class="sousNote"><i class="fa fa-calendar dateAjout" aria-hidden="true"></i> {{article.dateAjout}}</em>
+                        <p>{{  article.getExtrait()|raw }} </p>
                     </div>
                 {% endfor %}
             </div>

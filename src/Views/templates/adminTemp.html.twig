@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat|Roboto" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="css/admin.css" rel="stylesheet">
+
+    <title>Administration</title>
+</head>
+
+<body>
+
+<header class="container-fluid">
+    <div id="left_item" class="col-xs-6">
+        <a href="index.php" class="link_basic"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+            Retour vers le site</a>
+    </div>
+    <div id="right_item" class="col-xs-6">
+
+        <a href="index.php?p=admin.posts.index" class="link active">Articles</a>
+        <a href="index.php?p=admin.comments.index" class="link right">Commentaires</a>
+        <a href="#" class="upper_link"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <?= $_SESSION['user'] ?></a>
+
+    </div>
+</header>
+
+<div class="container-fluid">
+
+    <div class="starter-template">
+        {% block admin %}
+
+        {% endblock %}
+    </div>
+
+</div><!-- /.container -->
+
+<footer class="container-fluid clearfix">
+    <p>
+        Si vous rencontrez des problèmes liés à l'utilisation de votre administration contactez notre service
+        <a href="#">hola@goodwin.fr</a>
+    </p>
+</footer>
+</body>
+</html>

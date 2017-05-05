@@ -5,19 +5,17 @@ namespace Controllers;
 use Entities\Article;
 use Framework\Controller;
 
-class HomeController extends Controller
+class PanelController extends Controller
 {
-    public function homeAction()
+    public function panelAction()
     {
         $entityManager = $this->getDoctrine();
         $articles = $entityManager->getRepository("Entities\Article")->findAll();
-        $lastArticle = $entityManager->getRepository("Entities\Article")->findByOne(array('titre' => 'purpose'));
         $commentaire = $entityManager->getRepository("Entities\Commentaire")->findAll();
-        return $this->render('home.html.twig',[
+        return $this->render('adminPanel.html.twig',[
             'moteur' => 'Twig',
             'articles' => $articles,
-            'commentaire' => $commentaire,
-            'lastArticle' => $lastArticle
+            'commentaire' => $commentaire
         ]);
     }
 }

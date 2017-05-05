@@ -8,22 +8,22 @@ class Article
 {
     /**
      * @var int
-     * @Id @Column(type="integer")
-     * @GeneratedValue
+     * @Column(type="integer", name="id")
+     * @GeneratedValue(strategy="AUTO")
      **/
     protected $id;
     /**
-     * @Column(type="string")
+     * @Column(type="string", name="titre")
      **/
     protected $titre;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", name="contenu")
      **/
     protected $contenu;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", name="dateAjout")
      **/
     protected $dateAjout;
 

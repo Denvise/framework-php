@@ -9,7 +9,7 @@ class Product
     /**
      * @var int
      * @Id @Column(type="integer")
-     * @GeneratedValue
+     *  @GeneratedValue(strategy="AUTO")
     **/
     protected $id;
     /**
