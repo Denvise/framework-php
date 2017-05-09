@@ -8,8 +8,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Controller\\": "src/controllers/",
-            "Entity\\": "src/entities/",
+            "Controllers\\": "src/Controllers/",
+            "Entities\\": "src/Entities/",
             "Framework\\": "app/"
         }
     },
