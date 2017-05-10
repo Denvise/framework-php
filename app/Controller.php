@@ -18,6 +18,8 @@ class Controller
             'cache' => false
         ]);
 
+        $isDevMode = true;
+
         $dbParams = array(
             'driver'   => 'pdo_mysql',
             'user'     => 'root',
@@ -25,10 +27,8 @@ class Controller
             'dbname'   => 'blog',
         );
 
-        $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src/Entities"), false);
+        $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src/Entities"), $isDevMode);
         $this->doctrine = EntityManager::create($dbParams, $config);
-
-        $entityManager = $this->getDoctrine();
 
     }
 

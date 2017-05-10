@@ -10,16 +10,14 @@
 
     {% endif %}
 
-    <form  class="formLogin" method="post">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Votre username">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Mot de passe</label>
-                <input type="password" class="form-control" id="password" placeholder="********">
-            </div>
-        <button class="btn btn-primary">Se connecter</button>
-    </form>
+    {# src/OC/PlatformBundle/Resources/views/Advert/form.html.twig #}
+
+    <h3>Formulaire d'annonce</h3>
+
+    <div class="well">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
 </div>
 {% endblock %}

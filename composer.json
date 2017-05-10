@@ -3,7 +3,7 @@
     "authors": [
         {
             "name": "Denvise",
-            "email": ""
+            "email": "jardisindustrie@gmail.com"
         }
     ],
     "autoload": {
@@ -19,6 +19,8 @@
         "twig/twig": "~2.0",
         "doctrine/orm": "^2.5.5",
         "symfony/yaml": "^3.2",
-        "symfony/config": "^3.2"
+        "symfony/config": "^3.2",
+        "symfony/form": "^3.2",
+        "symfony/validator": "^3.2"
     }
 }

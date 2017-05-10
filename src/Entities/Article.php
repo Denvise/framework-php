@@ -7,6 +7,7 @@ namespace Entities;
 class Article
 {
     /**
+     * @Id
      * @var int
      * @Column(type="integer", name="id")
      * @GeneratedValue(strategy="AUTO")

@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         $entityManager = $this->getDoctrine();
         $articles = $entityManager->getRepository("Entities\Article")->findAll();
-        $lastArticle = $entityManager->getRepository("Entities\Article")->findByOne(array('titre' => 'purpose'));
+        $lastArticle = $entityManager->getRepository("Entities\Article")->findOneBy(array('titre' => 'purpose'));
         $commentaire = $entityManager->getRepository("Entities\Commentaire")->findAll();
         return $this->render('home.html.twig',[
             'moteur' => 'Twig',

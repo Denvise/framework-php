@@ -7,6 +7,7 @@ namespace Entities;
 class Commentaire
 {
     /**
+     * @Id
      * @var int
      * @Id @Column(type="integer")
      * @GeneratedValue(strategy="AUTO")
