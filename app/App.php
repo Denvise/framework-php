@@ -3,6 +3,9 @@
 namespace Framework;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Translation\Loader\XliffFileLoader;
+use Symfony\Component\Translation\Translator;
+use Symfony\Component\Validator\Validation;
 use Twig_Environment;
 use Twig_Loader_Filesystem;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
@@ -13,7 +16,8 @@ use Framework\Config\Routes;
 
 class App
 {
-    static public function run() {
+    static public function run()
+    {
 
         $request = Request::createFromGlobals();
 
@@ -24,13 +28,22 @@ class App
         $route = $matcher->match($request->getPathInfo());
 
 
-        list($controllerClass,$actionMethod) = explode("::",$route["_controller"]);
-        $controllerClass = "\Controllers\\".$controllerClass;
+        list($controllerClass, $actionMethod) = explode("::", $route["_controller"]);
+        $controllerClass = "\Controllers\\" . $controllerClass;
 
         $controller = new $controllerClass();
         $parameters = $route;
         unset($parameters['_controller'], $parameters['_route']);
         call_user_func_array(array($controller, $actionMethod), $parameters);
 
+
     }
+
+
+
 }
+
+
+
+
+
