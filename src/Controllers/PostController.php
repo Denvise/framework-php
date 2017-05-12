@@ -20,12 +20,7 @@ class PostController extends Controller
 
         $commentaire = new Commentaire();
         $form = $this->getFormFactory()->createBuilder(CommentType::class, $commentaire)->getForm();
-        $form->handleRequest($this->getRequest());
 
-        if ($form->isSubmitted() && $form->isValid()){
-            var_dump($commentaire);
-            exit();
-        }
 
 
         // $commentaire = $entityManager->getRepository("Entities\Commentaire")->findByArticle($article);

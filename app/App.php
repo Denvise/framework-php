@@ -3,15 +3,7 @@
 namespace Framework;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Translation\Loader\XliffFileLoader;
-use Symfony\Component\Translation\Translator;
-use Symfony\Component\Validator\Validation;
-use Twig_Environment;
-use Twig_Loader_Filesystem;
-use Symfony\Component\Routing\Matcher\UrlMatcher;
-use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing;
-
 use Framework\Config\Routes;
 
 class App

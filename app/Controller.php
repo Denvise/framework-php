@@ -27,7 +27,6 @@ class Controller
     private $formFactory = null;
     private $request;
     private $config;
-    private $routeName;
 
     public function __construct()
     {
@@ -70,10 +69,12 @@ class Controller
 
             $viewsDir = realpath(__DIR__ . '/../src/views');
 
-            $formEnfine = new TwigRendererEngine(array($defaultFormTheme), $this->twig);
+
+
+            $formEngine = new TwigRendererEngine(array($defaultFormTheme), $this->twig);
             $this->twig->addRuntimeLoader(new \Twig_FactoryRuntimeLoader(array(
-                TwigRenderer::class => function () use ($formEnfine, $csrfManager) {
-                    return new TwigRenderer($formEnfine, $csrfManager);
+                TwigRenderer::class => function () use ($formEngine, $csrfManager) {
+                    return new TwigRenderer($formEngine, $csrfManager);
                 }
             )));
 
