@@ -19,12 +19,16 @@ class CommentType extends AbstractType{
                     new NotBlank(),
                     ),
             ))
-            ->add('commentaire', TextareaType::class, array(
+            ->add('msg', TextareaType::class, array(
                 'constraints' => array(
                     new NotBlank()
                 )
             ));
 
+    }
+
+    public function getName(){
+        return 'form_comment';
     }
 
 }

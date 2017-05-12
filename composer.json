@@ -10,6 +10,7 @@
         "psr-4": {
             "Controllers\\": "src/Controllers/",
             "Entities\\": "src/Entities/",
+            "Form\\": "src/Form/",
             "Framework\\": "app/"
         }
     },

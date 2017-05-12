@@ -15,6 +15,7 @@ class PostController extends Controller
     {
         $entityManager = $this->getDoctrine();
         $article = $entityManager->getRepository("Entities\Article")->find($page);
+        $commentaires = $entityManager->getRepository("Entities\Commentaire")->findAll();
 
 
         $commentaire = new Commentaire();
@@ -30,7 +31,7 @@ class PostController extends Controller
         // $commentaire = $entityManager->getRepository("Entities\Commentaire")->findByArticle($article);
         return $this->render('episode.html.twig',[
             'article' => $article,
-            'commentaire' => $commentaire,
+            'commentaires' => $commentaires,
             'form'=>$form->createView()
           //  'commentaire' => $commentaire
         ]);

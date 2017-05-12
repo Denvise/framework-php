@@ -53,14 +53,6 @@ class Commentaire
     }
 
     /**
-     * @param mixed $pseudo
-     */
-    public function setTitre($pseudo)
-    {
-        $this->pseudo = $pseudo;
-    }
-
-    /**
      * @return mixed
      */
     public function getMsg()
