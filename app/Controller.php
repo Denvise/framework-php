@@ -1,71 +1,102 @@
 <?php
 namespace Framework;
 
-use Symfony\Component\Form\Extension\Csrf\CsrfExtension;
-use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Forms;
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
-use Symfony\Component\Validator\Validation;
+use Symfony\Bridge\Twig\Form\TwigRenderer;
+use Symfony\Bridge\Twig\Form\TwigRendererEngine;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Form\Extension\Csrf\CsrfExtension;
+use Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage;
+use Symfony\Component\Security\Csrf\TokenGenerator\UriSafeTokenGenerator;
+use Symfony\Component\Security\Csrf\CsrfTokenManager;
+use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
-
+use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
+use Symfony\Component\Validator\Validation;
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
 
 
 class Controller
 {
     private $twig;
-    private $doctrine;
-    private $formFactory;
+    private $doctrine = null;
+    private $formFactory = null;
+    private $request;
+    private $config;
+    private $routeName;
 
     public function __construct()
     {
-        define('DEFAULT_FORM_THEME', 'form_div_layout.html.twig');
 
-        define('VENDOR_DIR', realpath(__DIR__ . '/../vendor'));
-        define('VENDOR_FORM_DIR', VENDOR_DIR . '/symfony/form');
-        define('VENDOR_VALIDATOR_DIR', VENDOR_DIR . '/symfony/validator');
-        define('VENDOR_TWIG_BRIDGE_DIR', VENDOR_DIR . '/symfony/twig-bridge');
-        define('VIEWS_DIR', realpath(__DIR__ . '/../src/Views'));
-
-        $loader = new \Twig_Loader_Filesystem(__DIR__.'/../src/Views/');
+        $loader = new \Twig_Loader_Filesystem([__DIR__ . '/../src/Views/', __DIR__ . '/../vendor/symfony/twig-bridge/Resources/views/Form']);
         $this->twig = new \Twig_Environment($loader, [
             'cache' => false
         ]);
-
-        $isDevMode = true;
-
-        $dbParams = array(
-            'driver'   => 'pdo_mysql',
-            'user'     => 'root',
-            'password' => 'root',
-            'dbname'   => 'blog',
-        );
-
-        $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src/Entities"), $isDevMode);
-        $this->doctrine = EntityManager::create($dbParams, $config);
-
-        $validator = Validation::createValidator();
-        $translator = new Translator('fr');
-        $translator->addLoader('xlf', new XliffFileLoader());
-        $translator->addResource('xlf', VENDOR_FORM_DIR . '/Resources/translatations/validators.fr.xlf', 'fr', 'validrators');
-        $translator->addResource('xlf', VENDOR_VALIDATOR_DIR . '/Resources/translations/validators.fr.xlf', 'fr', 'validators');
-
-
-        $formFactory = Forms::createFormFactoryBuilder()
-            ->addExtension(new ValidatorExtension($validator))
-            ->getFormFactory();
-
     }
 
-    public function getFormFactory(){
+    protected function getDoctrine(){
+        if($this->doctrine === null) {
+            $dbParams = array(
+                'driver' => 'pdo_mysql',
+                'user' => 'root',
+                'password' => 'root',
+                'dbname' => 'blog',
+            );
+            $isDevMode = true;
+            $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/../src/Entities"), $isDevMode);
+            $this->doctrine = EntityManager::create($dbParams, $config);
+        }
+        return $this->doctrine;
+    }
+
+
+
+    protected function getFormFactory(){
+        if($this->formFactory === null) {
+            $session = new Session();
+            $csrfStorage = new SessionTokenStorage($session);
+            $csrfGenerator = new UriSafeTokenGenerator();
+            $csrfManager = new CsrfTokenManager($csrfGenerator, $csrfStorage);
+
+            $defaultFormTheme = isset($this->config["form"]["twig"]) ? $this->config["form"]["twig"] : 'form_div_layout.html.twig';
+
+            $vendorDir = realpath(__DIR__ . '/../vendor');
+            $vendorFormDir = $vendorDir . '/symfony/form';
+            $vendorValidatorDir = $vendorDir . '/symfony/validator';
+
+            $viewsDir = realpath(__DIR__ . '/../src/views');
+
+            $formEnfine = new TwigRendererEngine(array($defaultFormTheme), $this->twig);
+            $this->twig->addRuntimeLoader(new \Twig_FactoryRuntimeLoader(array(
+                TwigRenderer::class => function () use ($formEnfine, $csrfManager) {
+                    return new TwigRenderer($formEnfine, $csrfManager);
+                }
+            )));
+
+            $validator = Validation::createValidator();
+            $translator = new Translator('fr');
+            $translator->addLoader('xlf', new XliffFileLoader());
+            $translator->addResource('xlf', $vendorFormDir . '/Resources/translatations/validators.fr.xlf', 'fr', 'validrators');
+            $translator->addResource('xlf', $vendorFormDir . '/Resources/translations/validators.fr.xlf', 'fr', 'validators');
+
+
+            $this->formFactory = Forms::createFormFactoryBuilder()
+                ->addExtension(new ValidatorExtension($validator))
+                ->addExtension(new CsrfExtension($csrfManager))
+                ->addExtension(new HttpFoundationExtension())
+                ->getFormFactory();
+
+        }
         return $this->formFactory;
     }
 
-    public function getDoctrine(){
-        return $this->doctrine;
+    protected function getRequest()
+    {
+        return $this->request;
     }
 
 

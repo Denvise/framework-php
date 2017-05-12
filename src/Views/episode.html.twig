@@ -53,18 +53,23 @@
         <div id="formCom">
             <h3>Laissez un commentaire</h3>
             <br>
-            <form action="../pages/comment-post.php?id=6" method="post" class="formulaire">
-                <div class="form-group">
-                    <label for="pseudo">Pseudo :</label>
-                    <input type="text" class="form-control" name="pseudo" placeholder="Jean">
-                </div>
-                <div class="form-group">
-                    <label for="commentaire">Votre commentaire</label>
-                    <textarea name="commentaire" placeholder="Super cet épisode !" class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-default">Ajouter</button>
-            </form>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" />
+            {{ form_end(form) }}
         </div>
     </div>
 </section>
 {% endblock %}
+
+<form action="../pages/comment-post.php?id=6" method="post" class="formulaire">
+    <div class="form-group">
+        <label for="pseudo">Pseudo :</label>
+        <input type="text" class="form-control" name="pseudo" placeholder="Jean">
+    </div>
+    <div class="form-group">
+        <label for="commentaire">Votre commentaire</label>
+        <textarea name="commentaire" placeholder="Super cet épisode !" class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-default">Ajouter</button>
+</form>
