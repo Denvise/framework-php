@@ -1,6 +1,7 @@
 <?php
 namespace Framework;
 
+use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Forms;
@@ -72,6 +73,7 @@ class Controller
 
 
             $formEngine = new TwigRendererEngine(array($defaultFormTheme), $this->twig);
+            $this->twig->addExtension(new FormExtension());
             $this->twig->addRuntimeLoader(new \Twig_FactoryRuntimeLoader(array(
                 TwigRenderer::class => function () use ($formEngine, $csrfManager) {
                     return new TwigRenderer($formEngine, $csrfManager);
