@@ -2,6 +2,7 @@
 namespace Framework;
 
 use Symfony\Bridge\Twig\Extension\FormExtension;
+use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Forms;
@@ -31,6 +32,7 @@ class Controller
 
     public function __construct()
     {
+
 
         $loader = new \Twig_Loader_Filesystem([__DIR__ . '/../src/Views/', __DIR__ . '/../vendor/symfony/twig-bridge/Resources/views/Form']);
         $this->twig = new \Twig_Environment($loader, [
@@ -62,7 +64,7 @@ class Controller
             $csrfGenerator = new UriSafeTokenGenerator();
             $csrfManager = new CsrfTokenManager($csrfGenerator, $csrfStorage);
 
-            $defaultFormTheme = isset($this->config["form"]["twig"]) ? $this->config["form"]["twig"] : 'form_div_layout.html.twig';
+            $defaultFormTheme = isset($this->config["form"]["twig"]) ? $this->config["form"]["twig"] : 'bootstrap_3_layout.html.twig';
 
             $vendorDir = realpath(__DIR__ . '/../vendor');
             $vendorFormDir = $vendorDir . '/symfony/form';
@@ -83,8 +85,9 @@ class Controller
             $validator = Validation::createValidator();
             $translator = new Translator('fr');
             $translator->addLoader('xlf', new XliffFileLoader());
-            $translator->addResource('xlf', $vendorFormDir . '/Resources/translatations/validators.fr.xlf', 'fr', 'validrators');
             $translator->addResource('xlf', $vendorFormDir . '/Resources/translations/validators.fr.xlf', 'fr', 'validators');
+
+            $this->twig->addExtension(new TranslationExtension($translator));
 
 
             $this->formFactory = Forms::createFormFactoryBuilder()

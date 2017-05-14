@@ -28,6 +28,28 @@ class Commentaire
      **/
     protected $dateAjout;
 
+
+    /**
+     * @Column(type="integer")
+     */
+    protected $id_article;
+
+    /**
+     * @return mixed
+     */
+    public function getIdArticle()
+    {
+        return $this->id_article;
+    }
+
+    /**
+     * @param mixed $id_article
+     */
+    public function setIdArticle($id_article = null)
+    {
+        $this->id_article = $id_article;
+    }
+
     /**
      * @return int
      */
@@ -79,7 +101,7 @@ class Commentaire
     /**
      * @param mixed $dateAjout
      */
-    public function setDateAjout($dateAjout)
+    public function setDateAjout(\DateTime $dateAjout = null)
     {
         $this->dateAjout = $dateAjout;
     }
