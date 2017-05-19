@@ -6,7 +6,7 @@
     </div>
 
     <p>
-        <a href="?p=posts.add" class="btn btn-success">Ajouter un épisode</a>
+        <a href="/panel/add" class="btn btn-success">Ajouter un épisode</a>
     </p>
 
     <table class="table">
@@ -18,15 +18,32 @@
         </tr>
         </thead>
         <tbody>
-        {% for articles in articles %}
+        {% for article in articles %}
             <tr>
-                <td class="id">{{articles.id}}</td>
-                <td>{{articles.titre}}</td>
+                <td class="id">{{article.id}}</td>
+                <td>{{article.titre}}</td>
                 <td>
-                    <a href="?p=admin.posts.edit&id={{articles.id}}" class="btn btn-primary">Editer</a>
+                    <a href="/panel/edit/{{article.id}}" class="btn btn-primary">Editer</a>
                     <form action="?p=admin.posts.delete" method="post" style="display: inline;">
                         <input type="hidden" name="id" value="<?= $post->id ?>">
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                        <a class="btn btn-danger"  data-toggle="modal" data-target="#myModal{{article.id}}">Supprimer</a>
+                        <div class="modal fade" id="myModal{{article.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Suppression de l'épisode : {{article.titre}}</h4>
+
+                                        <br/>
+                                        <div class="alert alert-warning">Vous êtes sur le point de supprimer cet épisode.</div>
+                                        <div class="modal-body">
+                                        <a href="/panel/delete/{{article.id}}" class="btn btn-primary">Confirmer</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
                     </form>
                 </td>
             </tr>

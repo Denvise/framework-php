@@ -2,45 +2,50 @@
 
 namespace Form;
 
-use Entities\Commentaire;
+use Entities\Article;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Tests\Extension\Core\Type\CheckboxTypeTest;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class CommentType extends AbstractType{
+class EditType extends AbstractType{
+
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('pseudo', TextType::class, [ 'label' => 'Votre pseudo : ' ],
+
+
+        $builder->add('titre', TextType::class,
             array(
+                'attr' => array(
+                    'placeholder' => '',
+                ),
                 'constraints' => array(
                     new NotBlank(),
-                    ),
+                ),
             ))
-            ->add('msg', TextareaType::class, [ 'label' => 'Votre commentaire : ' ], array(
+            ->add('contenu', TextareaType::class, array(
+                'attr' => array(
+                'placeholder' => '',
+                ),
                 'constraints' => array(
                     new NotBlank()
-                ),
-
-            ))
-            ->add('prioritaire', CheckboxType::class, ['required' => false]);
+                )
+            ));
 
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Commentaire::class,
+            'data_class' => Article::class,
         ));
     }
 
     public function getName(){
-        return 'form_comment';
+        return 'form_editarticle';
     }
 
 }

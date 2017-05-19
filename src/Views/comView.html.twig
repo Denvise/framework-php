@@ -1,0 +1,62 @@
+{% extends 'templates/adminTemp.html.twig' %}
+{% block admin %}
+    <h1>Gérer vos commentaires</h1>
+    <div class="alert alert-warning">
+        Bienvenue sur votre panel admin, gérer vos épisodes et vos commentaires
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <td>N°</td>
+            <td>Pseudo</td>
+            <td>Actions</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                <td class="id">{{commentaire.id}}</td>
+                <td>{{commentaire.pseudo}}<br/>
+                    <a  data-toggle="modal" data-target="#myModal">
+                       Lire le commentaire
+                    </a>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Commentaire de {{ commentaire.pseudo }}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    {{commentaire.msg}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <td>
+                    <form style="display: inline;">
+                        <a href="/panel/editCom/{{commentaire.id}}" class="btn btn-primary">Publier</a>
+                        <a data-toggle="modal" data-target="#myModal2{{commentaire.id}}" class="btn btn-danger">Supprimer</a>
+                    </form>
+                </td>
+                <div class="modal fade" id="myModal2{{commentaire.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Suppression du commentaire de {{ commentaire.pseudo }}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-warning">Vous êtes sur le point de supprimer ce commentaire</div>
+                                <div class="modal-body">
+                                    <a href="/panel/deleteCom/{{commentaire.id}}" class="btn btn-primary">Confirmer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

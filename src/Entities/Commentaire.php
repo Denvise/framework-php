@@ -14,6 +14,7 @@ class Commentaire
      **/
     protected $id;
     /**
+     * @var string
      * @Column(type="string")
      **/
     protected $pseudo;
@@ -24,9 +25,57 @@ class Commentaire
     protected $msg;
 
     /**
+     * @var string
      * @Column(type="string")
      **/
     protected $dateAjout;
+
+
+    /**
+     * @var boolean
+     * @Column(type="boolean")
+     */
+    protected $etat;
+
+    /**
+     * @var boolean
+     * @Column(type="boolean")
+     */
+    protected $prioritaire;
+
+    /**
+     * @return bool
+     */
+    public function isPrioritaire()
+    {
+        return $this->prioritaire;
+    }
+
+    /**
+     * @param bool $prioritaire
+     */
+    public function setPrioritaire($prioritaire)
+    {
+        $this->prioritaire = $prioritaire;
+    }
+
+
+
+    /**
+     * @return bool
+     */
+    public function isEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * @param bool $etat
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    }
 
 
     /**
@@ -97,6 +146,15 @@ class Commentaire
     {
         return $this->dateAjout;
     }
+
+    /**
+     * @param mixed $pseudo
+     */
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
+    }
+
 
     /**
      * @param mixed $dateAjout

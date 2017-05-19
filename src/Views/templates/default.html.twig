@@ -33,11 +33,14 @@
     </div>
     <div id="last_episode" class="container">
         <h5>billet simple pour l'Alaska</h5>
-        <h4>- Episode {{ lastArticle.id }} - <br/>{{ lastArticle.titre }}</h4>
+        {% for lastArticle in lastArticle %}
+            <h4>- Episode {{ lastArticle.id }} - <br/>{{ lastArticle.titre }}</h4>
+
     </div>
     <div id="buttonMore" class="container">
-        <a href="index.php?p=posts.show&id=" class="btnMore" role="button">Voir l'épisode</a>
+        <a href="episode/{{ lastArticle.id }}" class="btnMore" role="button">Voir l'épisode</a>
     </div>
+    {% endfor %}
 </div>
 
 <div class="container-fluid">

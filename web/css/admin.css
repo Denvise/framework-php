@@ -75,7 +75,6 @@ footer p {
 a.link.active {
     color:white;
     text-decoration: none;
-    background-color: #b6d94d;
     padding: 22px 15px 22px 15px;
 }
 
@@ -143,4 +142,14 @@ td.id {
 .btn-success {
     color: #fff;
     background-color: #2bb180;
+}
+
+p.comView {
+    padding-left:30px;
+    padding-right:30px;
+    font-size:12px;
+}
+
+.modal-content {
+    margin-top:200px;
 }

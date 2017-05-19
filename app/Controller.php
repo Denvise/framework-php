@@ -3,6 +3,7 @@ namespace Framework;
 
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Forms;
@@ -10,6 +11,8 @@ use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Form\Extension\Csrf\CsrfExtension;
+use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage;
 use Symfony\Component\Security\Csrf\TokenGenerator\UriSafeTokenGenerator;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
@@ -29,10 +32,13 @@ class Controller
     private $formFactory = null;
     private $request;
     private $config;
+    private $routeCollection;
 
-    public function __construct()
+    public function __construct($request, $routeCollection)
     {
 
+        $this->request = $request;
+        $this->routeCollection = $routeCollection;
 
         $loader = new \Twig_Loader_Filesystem([__DIR__ . '/../src/Views/', __DIR__ . '/../vendor/symfony/twig-bridge/Resources/views/Form']);
         $this->twig = new \Twig_Environment($loader, [
@@ -117,6 +123,15 @@ class Controller
     {
         $response = new JsonResponse($data);
         $response->send();
+    }
+
+    protected function redirect($route, $args = array()) {
+
+        $context = new RequestContext('');
+        $generator = new UrlGenerator($this->routeCollection, $context);
+        $response = new RedirectResponse($generator->generate($route, $args));
+        $response->send();
+
     }
 
 

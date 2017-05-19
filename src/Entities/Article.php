@@ -19,11 +19,13 @@ class Article
     protected $titre;
 
     /**
+     * @var string
      * @Column(type="string", name="contenu")
      **/
     protected $contenu;
 
     /**
+     * @var string
      * @Column(type="string", name="dateAjout")
      **/
     protected $dateAjout;
