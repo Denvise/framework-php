@@ -94,9 +94,7 @@ class HomeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($commentaire);
             $entityManager->flush();
-            return $this->redirect("panel/");
-
-
+            return $this->redirect("addCommentaire");
         }
 
 

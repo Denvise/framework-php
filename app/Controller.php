@@ -127,10 +127,12 @@ class Controller
 
     protected function redirect($route, $args = array()) {
 
-        $context = new RequestContext(get);
+        $context = new RequestContext();
         $generator = new UrlGenerator($this->routeCollection, $context);
         $response = new RedirectResponse($generator->generate($route, $args));
         $response->send();
+        var_dump($generator);
+        exit();
 
     }
 

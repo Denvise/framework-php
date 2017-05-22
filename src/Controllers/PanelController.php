@@ -79,9 +79,7 @@ class PanelController extends Controller
 
         $entityManager = $this->getDoctrine();
         $com = $entityManager->getRepository("Entities\Commentaire")->find($com);
-
-        $com = new Commentaire();
-        $com->setEtat(false);
+        $com->setEtat(true);
         $entityManager->flush();
 
 
