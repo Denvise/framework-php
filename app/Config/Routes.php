@@ -5,10 +5,7 @@ namespace Framework\Config;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-class Routes
-{
-    static public function getRoutes()
-    {
+
         $routes = new RouteCollection();
         $routes->add('home', new Route('/', array('_controller' => 'HomeController::homeAction')));
         $routes->add('contact', new Route('/contact', array('_controller' => 'HomeController::contactAction')));
@@ -23,5 +20,3 @@ class Routes
         $routes->add('deleteCom', new Route('/panel/deleteCom/{com}', array('_controller' => 'PanelController::deleteAction')));
         $routes->add('editCom', new Route('/panel/editCom/{com}', array('_controller' => 'PanelController::editAction')));
         return $routes;
-    }
-}

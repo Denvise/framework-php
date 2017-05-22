@@ -127,7 +127,7 @@ class Controller
 
     protected function redirect($route, $args = array()) {
 
-        $context = new RequestContext('');
+        $context = new RequestContext(get);
         $generator = new UrlGenerator($this->routeCollection, $context);
         $response = new RedirectResponse($generator->generate($route, $args));
         $response->send();

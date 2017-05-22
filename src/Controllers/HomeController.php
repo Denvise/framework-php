@@ -2,15 +2,12 @@
 
 namespace Controllers;
 
-use Entities\Article;
 use Entities\Commentaire;
 use Form\CommentType;
 use Framework\Controller;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class HomeController extends Controller
 {
@@ -97,6 +94,8 @@ class HomeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($commentaire);
             $entityManager->flush();
+            return $this->redirect("panel/");
+
 
         }
 
