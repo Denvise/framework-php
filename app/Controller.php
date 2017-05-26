@@ -131,8 +131,6 @@ class Controller
         $generator = new UrlGenerator($this->routeCollection, $context);
         $response = new RedirectResponse($generator->generate($route, $args));
         $response->send();
-        var_dump($generator);
-        exit();
 
     }
 

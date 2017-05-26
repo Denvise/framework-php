@@ -24,7 +24,7 @@
             </div>
             <button type="submit" name="repondre" class="btn btn-repondre show">Répondre</button>
         </div>
-            <div class="formComRep" style="display: none">
+            <div class="formComRepmyModal{{ commentaire.id }}" style="display: none">
                 <h3>Répondre à {{ commentaire.pseudo }}</h3>
                 <br>
                 <form action="../pages/comment-post.php?id=6" method="post" class="formulaire">

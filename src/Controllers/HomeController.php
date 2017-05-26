@@ -79,7 +79,7 @@ class HomeController extends Controller
         $entityManager = $this->getDoctrine();
         $lastArticle = $entityManager->getRepository("Entities\Article")->findBy([], ['id' => 'DESC'], 1);
         $article = $entityManager->getRepository("Entities\Article")->find($page);
-        $commentaires = $entityManager->getRepository("Entities\Commentaire")->findBy(['id_article' => $page, 'etat' => '1']);
+        $commentaires = $entityManager->getRepository("Entities\Commentaire")->findBy(['article' => $article, 'etat' => '1']);
 
 
         $commentaire = new Commentaire();
@@ -94,7 +94,7 @@ class HomeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($commentaire);
             $entityManager->flush();
-            return $this->redirect("addCommentaire");
+            return $this->redirect("episode", ['page' => $page]);
         }
 
 

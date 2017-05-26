@@ -46,6 +46,16 @@ class Commentaire
     /**
      * @return bool
      */
+
+    /*
+     * @ManyToOne(targetEntity="Article")
+     * @JoinColumn(nullable=false)
+     */
+    private $article;
+
+
+
+
     public function isPrioritaire()
     {
         return $this->prioritaire;
@@ -78,26 +88,6 @@ class Commentaire
     }
 
 
-    /**
-     * @Column(type="integer")
-     */
-    protected $id_article;
-
-    /**
-     * @return mixed
-     */
-    public function getIdArticle()
-    {
-        return $this->id_article;
-    }
-
-    /**
-     * @param mixed $id_article
-     */
-    public function setIdArticle($id_article = null)
-    {
-        $this->id_article = $id_article;
-    }
 
     /**
      * @return int
@@ -163,6 +153,25 @@ class Commentaire
     {
         $this->dateAjout = $dateAjout;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+
+    /**
+     * @param mixed $article
+     */
+    public function setArticle($article)
+    {
+        $this->article = $article;
+    }
+
+
+
 
     public function getComment(){
         $html = '<p class="dateZonCom">'.$this->dateAjout.'</p>';

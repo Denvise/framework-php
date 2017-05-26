@@ -1,5 +1,7 @@
 <?php
 namespace Entities;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Table(name="articles")
  * @Entity
@@ -29,6 +31,28 @@ class Article
      * @Column(type="string", name="dateAjout")
      **/
     protected $dateAjout;
+
+
+    /*
+     * @OneToMany(targetEntity="Commentaire", mappedBy="article")
+     */
+    private $commentaires;
+
+    /**
+     * @return mixed
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
+
+    /**
+     * @param mixed $commentaires
+     */
+    public function setCommentaires($commentaires)
+    {
+        $this->commentaires = $commentaires;
+    }
 
     /**
      * @return int
@@ -92,6 +116,11 @@ class Article
     public function setDateAjout($dateAjout)
     {
         $this->dateAjout = $dateAjout;
+    }
+
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getExtrait(){

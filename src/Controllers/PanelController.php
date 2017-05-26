@@ -66,7 +66,7 @@ class PanelController extends Controller
         $commentaire = $entityManager->getRepository("Entities\Commentaire")->find($com);
 
         $entityManager->remove($commentaire);
-        $entityManager->flush();
+        $entityManager->flush();return $this->redirect("addCommentaire");
 
 
         return $this->render('comView.html.twig',[
@@ -81,6 +81,7 @@ class PanelController extends Controller
         $com = $entityManager->getRepository("Entities\Commentaire")->find($com);
         $com->setEtat(true);
         $entityManager->flush();
+        return $this->redirect("addCommentaire");
 
 
         return $this->render('comView.html.twig',[
