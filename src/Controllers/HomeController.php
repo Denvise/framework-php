@@ -2,27 +2,54 @@
 
 namespace Controllers;
 
+use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Entities\Commentaire;
 use Form\CommentType;
 use Framework\Controller;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
-    public function homeAction()
+    public function homeAction($page = false)
     {
+
         $entityManager = $this->getDoctrine();
-        $articles = $entityManager->getRepository("Entities\Article")->findAll();
+        $repository = $entityManager->getRepository("Entities\Article");
+
+        $max_result = 10; // nombre d'articles par page
+
+        // total d'article dans la bdd
+        $total = $query = $repository->createQueryBuilder('articles')
+            ->select('COUNT(articles)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $nbPages = ceil($total/$max_result);
+
+        if(isset($page) && $page > 0){
+            $currentPage = intval($page);
+        } else {
+            $currentPage = 1;
+        }
+
+
+
+        $firstEnter = ($currentPage-1)*$max_result;
+        $articles = $entityManager->getRepository("Entities\Article")->findBy(array(), array('id' => 'DESC'), $max_result, $firstEnter);
         $lastArticle = $entityManager->getRepository("Entities\Article")->findBy([], ['id' => 'DESC'], 1);
         $commentaire = $entityManager->getRepository("Entities\Commentaire")->findBy(['etat' => '1'], ['id' => 'DESC']);
+
 
         return $this->render('home.html.twig',[
             'moteur' => 'Twig',
             'articles' => $articles,
             'commentaire' => $commentaire,
-            'lastArticle' => $lastArticle
+            'lastArticle' => $lastArticle,
+            'total' => $total,
         ]);
     }
 

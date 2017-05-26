@@ -25,8 +25,6 @@ class PanelController extends Controller
     public function addAction()
 
     {
-
-
         $entityManager = $this->getDoctrine();
 
         $article = new Article();

@@ -1,6 +1,7 @@
 <?php
 namespace Entities;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\DBAL\Query\QueryBuilder;
 
 /**
  * @Table(name="articles")
@@ -129,6 +130,11 @@ class Article
         $html .= '<p class="sousBox"><i class="fa fa-commenting" aria-hidden="true"></i> 4 <span class="rightMarg"><i class="fa fa-eye" aria-hidden="true"></i>
         30</span></p>';
         return $html;
+    }
+
+    public function CountPost(){
+
+
     }
 
 

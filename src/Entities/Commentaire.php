@@ -48,8 +48,8 @@ class Commentaire
      */
 
     /*
-     * @ManyToOne(targetEntity="Article")
-     * @JoinColumn(nullable=false)
+     * @ManyToOne(targetEntity="Article", inversedBy="commentaires")
+     * @JoinColumn(nullable=false, name="id_article")
      */
     private $article;
 

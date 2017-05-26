@@ -7,7 +7,7 @@ use Symfony\Component\Routing\RouteCollection;
 
 
         $routes = new RouteCollection();
-        $routes->add('home', new Route('/', array('_controller' => 'HomeController::homeAction')));
+        $routes->add('home', new Route('/page/{page}', array('_controller' => 'HomeController::homeAction')));
         $routes->add('contact', new Route('/contact', array('_controller' => 'HomeController::contactAction')));
         $routes->add('about', new Route('/about', array('_controller' => 'HomeController::aboutAction')));
         $routes->add('login', new Route('/login', array('_controller' => 'HomeController::loginAction')));
