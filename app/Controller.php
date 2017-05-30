@@ -33,11 +33,9 @@ class Controller
     private $request;
     private $config;
     private $routeCollection;
-    private $KnpPaginator;
 
-    public function __construct($request, $routeCollection, $KnpPaginator)
+    public function __construct($request, $routeCollection)
     {
-        $this->KnpPaginator = $KnpPaginator;
         $this->request = $request;
         $this->routeCollection = $routeCollection;
 

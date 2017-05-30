@@ -2,7 +2,6 @@
 
 namespace Framework;
 
-use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing;
@@ -11,11 +10,10 @@ class App
     static public function run()
     {
 
-        $KnpPaginator = new KnpPaginatorBundle();
         $router = self::getRouter();
         list($controllerClass, $actionMethod) = explode("::", array_shift($router['route']));
         $controllerClass = "\Controllers\\" . $controllerClass;
-        $controller = new $controllerClass(Request::createFromGlobals(), $KnpPaginator, $router['collection'], array_pop($router['route']));
+        $controller = new $controllerClass(Request::createFromGlobals(), $router['collection'], array_pop($router['route']));
         call_user_func_array(array($controller, $actionMethod), $router['route']);
 
 

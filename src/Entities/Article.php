@@ -34,7 +34,7 @@ class Article
     protected $dateAjout;
 
 
-    /*
+    /**
      * @OneToMany(targetEntity="Commentaire", mappedBy="article")
      */
     private $commentaires;

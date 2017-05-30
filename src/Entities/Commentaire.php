@@ -44,17 +44,10 @@ class Commentaire
     protected $prioritaire;
 
     /**
-     * @return bool
-     */
-
-    /*
      * @ManyToOne(targetEntity="Article", inversedBy="commentaires")
      * @JoinColumn(nullable=false, name="id_article")
      */
     private $article;
-
-
-
 
     public function isPrioritaire()
     {
@@ -176,7 +169,7 @@ class Commentaire
     public function getComment(){
         $html = '<p class="dateZonCom">'.$this->dateAjout.'</p>';
         $html .= '<p class="commentaire">'.$this->msg.'</p>';
-        $html .= '<h5 class="pseudo"> <img src="images/spera.png"/> '.$this->pseudo.'</h5>';
+        $html .= '<h5 class="pseudo"> <img src="/images/spera.png"/> '.$this->pseudo.'</h5>';
         return $html;
     }
 

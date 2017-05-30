@@ -106,11 +106,10 @@ class HomeController extends Controller
         $entityManager = $this->getDoctrine();
         $lastArticle = $entityManager->getRepository("Entities\Article")->findBy([], ['id' => 'DESC'], 1);
         $article = $entityManager->getRepository("Entities\Article")->find($page);
-        $commentaires = $entityManager->getRepository("Entities\Commentaire")->findBy(['article' => $article, 'etat' => '1']);
 
 
         $commentaire = new Commentaire();
-        $commentaire->setIdArticle($page);
+        $commentaire->setArticle($article);
         $commentaire->setEtat('0');
         $commentaire->getDateAjout('now');
         $form = $this->getFormFactory()->createBuilder(CommentType::class, $commentaire)->getForm();
@@ -130,7 +129,6 @@ class HomeController extends Controller
         return $this->render('episode.html.twig',[
             'article' => $article,
             'lastArticle' => $lastArticle,
-            'commentaires' => $commentaires,
             'form'=>$form->createView()
             //  'commentaire' => $commentaire
         ]);
