@@ -19,6 +19,16 @@
                 {% endfor %}
 
             </div>
+
+            <div id="pagination">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {% for i in 1..nbPages %}
+                            <li><a href="/page/{{ i }}">{{ i }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
         </div>
 
         <div id="RightCol" class="col-md-5">

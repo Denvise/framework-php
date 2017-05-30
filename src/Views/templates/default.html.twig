@@ -51,14 +51,10 @@
 
 </div><!-- /.container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-    $(function(){
-        $('.show').click(function() {
-
-        });
-    });
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}
 <footer>
     <p class="container-fluid">Design for Jean Forteroche by <span class="goodwin">Goodwin</span> © 2017 Tous droits réservés</p>
 </footer>

@@ -29,7 +29,6 @@ class HomeController extends Controller
             ->getSingleScalarResult();
 
         $nbPages = ceil($total/$max_result);
-
         if(isset($page) && $page > 0){
             $currentPage = intval($page);
         } else {
@@ -50,6 +49,7 @@ class HomeController extends Controller
             'commentaire' => $commentaire,
             'lastArticle' => $lastArticle,
             'total' => $total,
+            'nbPages' => $nbPages
         ]);
     }
 
@@ -123,8 +123,6 @@ class HomeController extends Controller
             return $this->redirect("episode", ['page' => $page]);
         }
 
-
-
         // $commentaire = $entityManager->getRepository("Entities\Commentaire")->findByArticle($article);
         return $this->render('episode.html.twig',[
             'article' => $article,
@@ -132,5 +130,29 @@ class HomeController extends Controller
             'form'=>$form->createView()
             //  'commentaire' => $commentaire
         ]);
+    }
+
+    public function addCommentAction($page,$idParent = null)
+    {
+        $entityManager = $this->getDoctrine();
+        $article = $entityManager->getRepository("Entities\Article")->find($page);
+        $commentaire = new Commentaire();
+        $commentaire->setArticle($article);
+        $commentaire->setEtat('0');
+        $commentaire->getDateAjout('now');
+        if($idParent != null){
+            $commentaire->setParent($entityManager->getRepository("Entities\Commentaire")->find($idParent));
+        }
+        $commentaire->setEtat(false);
+        $commentaire->getDateAjout(new \DateTime());
+        $form = $this->getFormFactory()->createBuilder(CommentType::class, $commentaire)->getForm();
+
+        $form->handleRequest($this->getRequest());
+        if ($form->isSubmitted() && $form->isValid()) {
+             $entityManager->persist($commentaire);
+             $entityManager->flush();
+             return $this->redirect("episode", ['page' => $page]);
+        }
+
     }
 }

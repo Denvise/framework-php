@@ -22,36 +22,35 @@
                 <p class="dateCom">publié le {{ commentaire.dateAjout }}</p>
                 <p class="commentaire">{{ commentaire.msg }}</p>
             </div>
-            <button type="submit" name="repondre" class="btn btn-repondre show">Répondre</button>
+            <button type="submit" name="repondre" data-author="{{commentaire.pseudo}}" data-parent="{{commentaire.id}}" class="btn btn-repondre show">Répondre</button>
         </div>
-            <div class="formComRepmyModal{{ commentaire.id }}" style="display: none">
-                <h3>Répondre à {{ commentaire.pseudo }}</h3>
-                <br>
-                <form action="../pages/comment-post.php?id=6" method="post" class="formulaire">
-                    <div class="form-group">
-                        <label for="pseudo">Pseudo :</label>
-                        <input type="text" class="form-control" name="pseudo" placeholder="Yvan">
-                    </div>
-                    <div class="form-group">
-                        <label for="commentaire">Votre commentaire</label>
-                        <textarea name="commentaire" placeholder="Tu as raison c'est super !" class="form-control" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-default">Ajouter</button>
-                </form>
-            </div>
         {% endfor %}
         </div>
     <div class="col-md-offset-1 col-md-4">
         <div id="formCom">
-            <h3>Laissez un commentaire</h3>
+            <h3 id="title-comment">Laissez un commentaire</h3>
             <br>
-
-            {{ form_start(form) }}
+            {{ form_start(form, {'action':'/episode/add-com/' ~ article.id }) }}
             {{ form_widget(form) }}
             <input type="submit" />
             {{ form_end(form) }}
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script>
+        $(function(){
+            $('.show').click(function() {
+                var action = $("form").attr("action");
+                $("form").attr("action",action + "/" + $(this).attr("data-parent"))
+                $("#title-comment").text("Répondre au commentaire de " + $(this).attr("data-author"))
+                $("#comment_pseudo").focus();
+            });
+        });
+    </script>
+
 {% endblock %}
 

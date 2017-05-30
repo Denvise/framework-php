@@ -49,6 +49,52 @@ class Commentaire
      */
     private $article;
 
+    /**
+    * @ManyToOne(targetEntity="Commentaire", inversedBy="children")
+    * @JoinColumn(nullable=true, name="parent_id")
+    */
+
+    private $parent;
+
+    /**
+     * @OneToMany(targetEntity="Commentaire", mappedBy="parent")
+     */
+    private $children;
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param mixed $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param mixed $children
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+    }
+
+
+
     public function isPrioritaire()
     {
         return $this->prioritaire;

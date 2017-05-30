@@ -11,12 +11,19 @@ class App
     {
 
         $router = self::getRouter();
-        list($controllerClass, $actionMethod) = explode("::", array_shift($router['route']));
+        $_controller = $router['route']["_controller"];
+        unset($router['route']["_controller"]);
+        list($controllerClass, $actionMethod) = explode("::", $_controller);
         $controllerClass = "\Controllers\\" . $controllerClass;
-        $controller = new $controllerClass(Request::createFromGlobals(), $router['collection'], array_pop($router['route']));
-        call_user_func_array(array($controller, $actionMethod), $router['route']);
-
-
+        $routeName = $router["route"]["_route"];
+        unset($router['route']["_route"]);
+        $controller = new $controllerClass(Request::createFromGlobals(), $router['collection'], $routeName);
+        $method = new \ReflectionMethod($controllerClass, $actionMethod);
+        $args = [];
+        foreach($method->getParameters() as $param) {
+            $args[] = $router['route'][$param->getName()];
+        }
+        call_user_func_array(array($controller, $actionMethod), $args);
 
     }
 

@@ -51,7 +51,7 @@ class Controller
                 'driver' => 'pdo_mysql',
                 'user' => 'root',
                 'password' => 'root',
-                'dbname' => 'blog',
+                'dbname' => 'Blog',
             );
             $isDevMode = true;
             $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/../src/Entities"), $isDevMode);
