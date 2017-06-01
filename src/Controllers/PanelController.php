@@ -22,15 +22,14 @@ class PanelController extends Controller
         ]);
     }
 
-    public function addAction()
+    public function addPostAction()
 
     {
         $entityManager = $this->getDoctrine();
 
         $article = new Article();
-        $article->getDateAjout('now');
+        $article->getDateAjout(new \DateTime());
         $form = $this->getFormFactory()->createBuilder(PostType::class, $article)->getForm();
-
         $form->handleRequest($this->getRequest());
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -42,6 +41,24 @@ class PanelController extends Controller
 
         return $this->render('addPost.html.twig',[
             'form'=>$form->createView()
+        ]);
+    }
+
+    public function deletePostAction($page = false)
+    {
+
+
+
+        $entityManager = $this->getDoctrine();
+        $article = $entityManager->getRepository("Entities\Article")->find($page);
+
+        $entityManager->remove($article);
+        $entityManager->flush();
+        return $this->redirect('panel');
+
+
+        return $this->render('adminPanel.html.twig',[
+            'article' => $article,
         ]);
     }
 
@@ -64,7 +81,9 @@ class PanelController extends Controller
         $commentaire = $entityManager->getRepository("Entities\Commentaire")->find($com);
 
         $entityManager->remove($commentaire);
-        $entityManager->flush();return $this->redirect("addCommentaire");
+        $entityManager->flush();
+        return $this->redirect('commentaireView');
+
 
 
         return $this->render('comView.html.twig',[
@@ -79,7 +98,7 @@ class PanelController extends Controller
         $com = $entityManager->getRepository("Entities\Commentaire")->find($com);
         $com->setEtat(true);
         $entityManager->flush();
-        return $this->redirect("addCommentaire");
+        return $this->redirect("commentaireView");
 
 
         return $this->render('comView.html.twig',[

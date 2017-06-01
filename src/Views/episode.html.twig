@@ -7,6 +7,18 @@
     <img src="/images/spera.png"/>
     <p>{{ article.contenu }}</p>
 </div>
+    <div id="pagination" class="container">
+        <nav aria-label="...">
+            <ul class="pager">
+                    {% if prevPage != null %}
+                        <li><a class="previous" href="/episode/{{ prevPage }}"><span aria-hidden="true">&larr;</span> Episode précédent n°{{ prevPage }}</a></li>
+                    {% endif %}
+                    {% if nextPage != null %}
+                        <li><a class="next" href="/episode/{{ nextPage }}">Episode suivant n°{{ nextPage }} <span aria-hidden="true">&rarr;</span></a></li>
+                    {% endif %}
+            </ul>
+        </nav>
+    </div>
 
 <div id="zonCom" class="container-fluid row">
     <h1><i class="fa fa-commenting" aria-hidden="true"></i></h1>
@@ -15,16 +27,37 @@
 </div>
 <section id="Com" class="container">
     <div class="col-md-7">
-        {% for commentaire in article.commentaires %}
-        <div class="boxCom">
-            <h4 class="pseudo">Par : {{ commentaire.pseudo }}</h4>
-            <div class="lastcom">
-                <p class="dateCom">publié le {{ commentaire.dateAjout }}</p>
-                <p class="commentaire">{{ commentaire.msg }}</p>
+            {% for commentaire in article.commentaires if commentaire.etat == true %}
+            <div class="boxCom">
+                <h4 class="pseudo">Par : {{ commentaire.pseudo }}</h4>
+                <div class="lastcom">
+                    <p class="dateCom">publié le {{ commentaire.dateAjout }}</p>
+                    <p class="commentaire">{{ commentaire.msg }}</p>
+                </div>
+                <button type="submit" name="repondre" data-author="{{commentaire.pseudo}}" data-parent="{{commentaire.id}}" class="btn btn-repondre show">Répondre</button>
             </div>
-            <button type="submit" name="repondre" data-author="{{commentaire.pseudo}}" data-parent="{{commentaire.id}}" class="btn btn-repondre show">Répondre</button>
-        </div>
-        {% endfor %}
+                {% for commentaire2 in commentaires.children %}
+                    <div class="boxCom" style="margin-left: 40px;">
+                        <h4 class="pseudo">Par : {{ commentaire2.pseudo }}</h4>
+                        <div class="lastcom">
+                            <p class="dateCom">publié le {{ commentaire2.dateAjout }}</p>
+                            <p class="commentaire">{{ commentaire2.msg }}</p>
+                        </div>
+                        <button type="submit" name="repondre" data-author="{{commentaire.pseudo}}" data-parent="{{commentaire.id}}" class="btn btn-repondre show">Répondre</button>
+                    </div>
+                {% endfor %}
+                    {% for commentaire3 in commentaires2.children %}
+                        <div class="boxCom" style="margin-left: 40px;">
+                            <h4 class="pseudo">Par : {{ commentaire3.pseudo }}</h4>
+                            <div class="lastcom">
+                                <p class="dateCom">publié le {{ commentaire3.dateAjout }}</p>
+                                <p class="commentaire">{{ commentaire3.msg }}</p>
+                            </div>
+                            <button type="submit" name="repondre" data-author="{{commentaire.pseudo}}" data-parent="{{commentaire.id}}" class="btn btn-repondre show">Répondre</button>
+                        </div>
+                    {% endfor %}
+            {% endfor %}
+
         </div>
     <div class="col-md-offset-1 col-md-4">
         <div id="formCom">

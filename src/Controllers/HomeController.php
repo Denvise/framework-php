@@ -100,22 +100,38 @@ class HomeController extends Controller
      */
     public function showAction($page = false)
     {
-
-
-
         $entityManager = $this->getDoctrine();
+        $repository = $entityManager->getRepository("Entities\Article");
+        $total = $query = $repository->createQueryBuilder('articles')
+            ->select('COUNT(articles)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+
+
+        if($page == 1){
+            $prevPage = null ;
+        } else {
+            $prevPage = $page - 1;
+        }
+
+        if($page == $total){
+            $nextPage = null ;
+        } else {
+            $nextPage = $page + 1;
+        }
+
         $lastArticle = $entityManager->getRepository("Entities\Article")->findBy([], ['id' => 'DESC'], 1);
         $article = $entityManager->getRepository("Entities\Article")->find($page);
 
 
         $commentaire = new Commentaire();
         $commentaire->setArticle($article);
-        $commentaire->setEtat('0');
-        $commentaire->getDateAjout('now');
+        $commentaire->setEtat(false);
+        $commentaire->getDateAjout(new \DateTime());
         $form = $this->getFormFactory()->createBuilder(CommentType::class, $commentaire)->getForm();
 
         $form->handleRequest($this->getRequest());
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($commentaire);
@@ -123,10 +139,13 @@ class HomeController extends Controller
             return $this->redirect("episode", ['page' => $page]);
         }
 
-        // $commentaire = $entityManager->getRepository("Entities\Commentaire")->findByArticle($article);
         return $this->render('episode.html.twig',[
             'article' => $article,
             'lastArticle' => $lastArticle,
+            'total' => $total,
+            'page' => $page,
+            'prevPage' => $prevPage,
+            'nextPage' => $nextPage,
             'form'=>$form->createView()
             //  'commentaire' => $commentaire
         ]);
@@ -138,8 +157,6 @@ class HomeController extends Controller
         $article = $entityManager->getRepository("Entities\Article")->find($page);
         $commentaire = new Commentaire();
         $commentaire->setArticle($article);
-        $commentaire->setEtat('0');
-        $commentaire->getDateAjout('now');
         if($idParent != null){
             $commentaire->setParent($entityManager->getRepository("Entities\Commentaire")->find($idParent));
         }

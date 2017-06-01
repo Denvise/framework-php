@@ -119,11 +119,6 @@ class Article
         $this->dateAjout = $dateAjout;
     }
 
-    public function __construct()
-    {
-        $this->commentaires = new ArrayCollection();
-    }
-
     public function getExtrait(){
         $html = '<p>' . substr($this->contenu, 0, 200) . '[...]</p>';
         $html .= '<div class="smallBtnMore"><p><a href="/episode/'. $this->id .'">Voir la suite</a></p></div>';
