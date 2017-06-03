@@ -378,6 +378,14 @@ h4.pseudo {
     color:white;
 }
 
+h4.pseudoAnwser {
+    margin-left:20px;
+    padding:10px;
+    display: inline;
+    background-color: #f38181;
+    color:white;
+}
+
 h3.pseudo {
     margin-left:25px;
     margin-top:20px;
@@ -453,6 +461,19 @@ p.dateZonCom {
     margin-top:20px;
     margin-left:25px;
     font-style: italic;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 0px;
+}
+
+.alert-warning {
+    color: #3d3d3d;
+    background-color: #ffffff;
+    border-color: #f38181;
 }
 
 /** ------------------------------

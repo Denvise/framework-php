@@ -78,6 +78,10 @@ a.link.active {
     padding: 22px 15px 22px 15px;
 }
 
+a {
+    cursor: pointer;
+}
+
 .right {
     margin-right:20px;
 }

@@ -27,35 +27,34 @@
 </div>
 <section id="Com" class="container">
     <div class="col-md-7">
-            {% for commentaire in article.commentaires if commentaire.etat == true %}
-            <div class="boxCom">
-                <h4 class="pseudo">Par : {{ commentaire.pseudo }}</h4>
-                <div class="lastcom">
-                    <p class="dateCom">publié le {{ commentaire.dateAjout }}</p>
-                    <p class="commentaire">{{ commentaire.msg }}</p>
+            {% for commentaire in article.commentaires if commentaire.etat == true and commentaire.parent is null %}
+                <div class="boxCom">
+                    <h4 class="pseudo">Par : {{ commentaire.pseudo }}</h4>
+                    <div class="lastcom">
+                        <p class="dateCom">publié le {{ commentaire.dateAjout }}</p>
+                        <p class="commentaire">{{ commentaire.msg }}</p>
+                    </div>
+                    <button type="submit" name="repondre" data-author="{{commentaire.pseudo}}" data-parent="{{commentaire.id}}" class="btn btn-repondre show">Répondre</button>
                 </div>
-                <button type="submit" name="repondre" data-author="{{commentaire.pseudo}}" data-parent="{{commentaire.id}}" class="btn btn-repondre show">Répondre</button>
-            </div>
-                {% for commentaire2 in commentaires.children %}
+                {% for commentaire2 in commentaire.children if commentaire2.etat == true %}
                     <div class="boxCom" style="margin-left: 40px;">
-                        <h4 class="pseudo">Par : {{ commentaire2.pseudo }}</h4>
+                        <h4 class="pseudoAnwser">Par : {{ commentaire2.pseudo }}</h4>
                         <div class="lastcom">
                             <p class="dateCom">publié le {{ commentaire2.dateAjout }}</p>
                             <p class="commentaire">{{ commentaire2.msg }}</p>
                         </div>
-                        <button type="submit" name="repondre" data-author="{{commentaire.pseudo}}" data-parent="{{commentaire.id}}" class="btn btn-repondre show">Répondre</button>
+                        <button type="submit" name="repondre" data-author="{{commentaire2.pseudo}}" data-parent="{{commentaire2.id}}" class="btn btn-repondre show">Répondre</button>
                     </div>
-                {% endfor %}
-                    {% for commentaire3 in commentaires2.children %}
-                        <div class="boxCom" style="margin-left: 40px;">
-                            <h4 class="pseudo">Par : {{ commentaire3.pseudo }}</h4>
+                    {% for commentaire3 in commentaire2.children  if commentaire3.etat == true %}
+                        <div class="boxCom" style="margin-left: 80px;">
+                            <h4 class="pseudoAnwser">Par : {{ commentaire3.pseudo }}</h4>
                             <div class="lastcom">
                                 <p class="dateCom">publié le {{ commentaire3.dateAjout }}</p>
                                 <p class="commentaire">{{ commentaire3.msg }}</p>
                             </div>
-                            <button type="submit" name="repondre" data-author="{{commentaire.pseudo}}" data-parent="{{commentaire.id}}" class="btn btn-repondre show">Répondre</button>
                         </div>
                     {% endfor %}
+                {% endfor %}
             {% endfor %}
 
         </div>

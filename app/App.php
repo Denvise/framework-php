@@ -22,6 +22,7 @@ class App
         $args = [];
         foreach($method->getParameters() as $param) {
             $args[] = $router['route'][$param->getName()];
+
         }
         call_user_func_array(array($controller, $actionMethod), $args);
 

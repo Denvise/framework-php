@@ -31,7 +31,6 @@ class PanelController extends Controller
         $article->getDateAjout(new \DateTime());
         $form = $this->getFormFactory()->createBuilder(PostType::class, $article)->getForm();
         $form->handleRequest($this->getRequest());
-
         if($form->isSubmitted() && $form->isValid()) {
 
             $entityManager->persist($article);
